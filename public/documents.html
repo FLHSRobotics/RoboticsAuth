@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,400,500,900" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>FLHS Robotics</title>
+
+            <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+            <script>
+              // Initialize Firebase
+              var config = {
+                apiKey: "AIzaSyDp3FFbviWq7Z-IhECOGdqY_ezzAj3197I",
+                authDomain: "brigade-929f9.firebaseapp.com",
+                databaseURL: "https://brigade-929f9.firebaseio.com",
+                projectId: "brigade-929f9",
+                storageBucket: "brigade-929f9.appspot.com",
+                messagingSenderId: "54936219962"
+              };
+              firebase.initializeApp(config);
+            </script>
+    <style>
+    html{
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    body{
+      font-family: 'Roboto', sans-serif;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    .header{
+      background-color: rgba(12, 60, 96, 1);
+      min-height: 6%;
+      width: 100%;
+    }
+    .header button{
+      background-color: white;
+      margin: 1%;
+      padding: .5%;
+      border: none;
+      float: right;
+      font-size: 60%;
+      cursor: pointer;
+      color: black;
+    }
+    #greeting{
+      font-weight: 100;
+      margin-left: 3%;
+      min-height: 38op;
+    }
+    .content{
+      margin: 5%;
+      background-color: rgba(12, 60, 96, 1);
+      padding: 1%;
+    }
+    .card{
+
+      background-color: white;
+      width: 15%;
+      height: 15%;
+      padding-left: 3%;
+      padding-right: 3%;
+      padding-top: 1%;
+
+
+    }
+    </style>
+    <script>
+    firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    document.getElementById('greeting').innerHTML = "Hello, "+user.displayName;
+  } else {
+    window.location = "index.html"
+  }
+});
+$("#signOut").click(function()
+           {
+             firebase.auth().signOut().then(function() {
+                 window.location = "index.html"
+             }, function(error) {
+               console.error('Sign Out Error', error);
+             });
+           }
+        );
+
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <button id="signOut">Sign Out</button>
+    </div>
+    <div class="profileDetails">
+      <h1 id="greeting"></h1>
+
+    </div>
+    <div class="content">
+      <div class="card">
+        <p>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>
